@@ -84,7 +84,7 @@ class StudentCubitView extends StatelessWidget {
                     _addressController.clear();
                   }
                 },
-                child: const Text('Submit'),
+                child: const Text('Add student'),
               ),
               SizedBox(height: 8),
               BlocBuilder<StudentCubit, StudentState>(
@@ -92,14 +92,22 @@ class StudentCubitView extends StatelessWidget {
                   if (state.isLoading) {
                     return const CircularProgressIndicator();
                   } else if (state.lstStudents.isEmpty) {
-                    return const Text('No students added yet');
+                    return const Text('');
                   } else {
                     return ListView.builder(
                       shrinkWrap: true,
                       itemCount: state.lstStudents.length,
                       itemBuilder: (context, index) {
                         return ListTile(
-                          title: Text(state.lstStudents[index].name),
+                          title: Row(
+                            children: [
+                              Text(state.lstStudents[index].name),
+                              SizedBox(
+                                width: 50,
+                              ),
+                              Text(state.lstStudents[index].address),
+                            ],
+                          ),
                           subtitle:
                               Text(state.lstStudents[index].age.toString()),
                           trailing: IconButton(
