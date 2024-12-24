@@ -1,7 +1,10 @@
+import 'package:bloc_test/cubit/area_circe_cubit.dart';
 import 'package:bloc_test/cubit/arithmetic_cubit.dart';
 import 'package:bloc_test/cubit/counter_cubit.dart';
 import 'package:bloc_test/cubit/dashboard_cubit.dart';
+import 'package:bloc_test/cubit/simple_interest_cubit.dart';
 import 'package:bloc_test/cubit/student_cubit.dart';
+import 'package:bloc_test/cubit/volume_cuboid_cubit.dart';
 import 'package:bloc_test/view/dashboard_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,11 +19,17 @@ class App extends StatelessWidget {
           BlocProvider(create: (context) => CounterCubit()),
           BlocProvider(create: (context) => ArithmeticCubit()),
           BlocProvider(create: (context) => StudentCubit()),
+          BlocProvider(create: (context) => SimpleInterestCubit()),
+          BlocProvider(create: (context) => AreaCirceCubit()),
+          BlocProvider(create: (context) => VolumeCuboidCubit()),
           BlocProvider(
               create: (context) => DashboardCubit(
                     context.read<CounterCubit>(),
                     context.read<ArithmeticCubit>(),
                     context.read<StudentCubit>(),
+                    context.read<SimpleInterestCubit>(),
+                    context.read<AreaCirceCubit>(),
+                    context.read<VolumeCuboidCubit>(),
                   )),
         ],
         child: MaterialApp(

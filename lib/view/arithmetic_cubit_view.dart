@@ -2,6 +2,7 @@ import 'package:bloc_test/cubit/arithmetic_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+// ignore: must_be_immutable
 class ArithmeticCubitView extends StatelessWidget {
   ArithmeticCubitView({super.key});
 
@@ -25,9 +26,34 @@ class ArithmeticCubitView extends StatelessWidget {
           children: [
             TextFormField(
               controller: firstController,
+              decoration: const InputDecoration(
+                labelText: 'First number',
+                border: OutlineInputBorder(),
+              ),
+              keyboardType: TextInputType.number,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter first number';
+                }
+                return null;
+              },
+            ),
+            SizedBox(
+              height: 10,
             ),
             TextFormField(
               controller: secondController,
+              decoration: const InputDecoration(
+                labelText: 'Second Number',
+                border: OutlineInputBorder(),
+              ),
+              keyboardType: TextInputType.number,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter second number';
+                }
+                return null;
+              },
             ),
             BlocBuilder<ArithmeticCubit, int>(
               builder: (context, state) {
@@ -40,27 +66,33 @@ class ArithmeticCubitView extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                first = int.parse(firstController.text);
-                second = int.parse(secondController.text);
-                print(first);
-                print(second);
-                context.read<ArithmeticCubit>().add(first, second);
+                if (formKey.currentState!.validate()) {
+                  first = int.parse(firstController.text);
+                  second = int.parse(secondController.text);
+                  print(first);
+                  print(second);
+                  context.read<ArithmeticCubit>().add(first, second);
+                }
               },
               child: Text("Add"),
             ),
             ElevatedButton(
               onPressed: () {
-                first = int.parse(firstController.text);
-                second = int.parse(secondController.text);
-                context.read<ArithmeticCubit>().subtract(first, second);
+                if (formKey.currentState!.validate()) {
+                  first = int.parse(firstController.text);
+                  second = int.parse(secondController.text);
+                  context.read<ArithmeticCubit>().subtract(first, second);
+                }
               },
               child: Text("Subtract"),
             ),
             ElevatedButton(
               onPressed: () {
-                first = int.parse(firstController.text);
-                second = int.parse(secondController.text);
-                context.read<ArithmeticCubit>().multiply(first, second);
+                if (formKey.currentState!.validate()) {
+                  first = int.parse(firstController.text);
+                  second = int.parse(secondController.text);
+                  context.read<ArithmeticCubit>().multiply(first, second);
+                }
               },
               child: Text("Multiply"),
             ),

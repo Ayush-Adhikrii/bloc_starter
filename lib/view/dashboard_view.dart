@@ -62,6 +62,48 @@ class DashboardView extends StatelessWidget {
               ),
             ),
           ),
+          Card(
+            child: InkWell(
+              onTap: () {
+                context.read<DashboardCubit>().openSimpleInterestView(context);
+              },
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const <Widget>[
+                  Icon(Icons.currency_pound_outlined, size: 48),
+                  Text('Simple interest Cubit'),
+                ],
+              ),
+            ),
+          ),
+          Card(
+            child: InkWell(
+              onTap: () {
+                context.read<DashboardCubit>().openAreaCircleView(context);
+              },
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const <Widget>[
+                  Icon(Icons.circle, size: 48),
+                  Text('Area of circle Cubit'),
+                ],
+              ),
+            ),
+          ),
+          Card(
+            child: InkWell(
+              onTap: () {
+                context.read<DashboardCubit>().openVolumeCuboidView(context);
+              },
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const <Widget>[
+                  Icon(Icons.abc, size: 48),
+                  Text('Volume of cuboid Cubit'),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );
