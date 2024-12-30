@@ -70,7 +70,7 @@ class DashboardView extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const <Widget>[
-                  Icon(Icons.person, size: 48),
+                  Icon(Icons.add, size: 48),
                   Text('Counter Bloc'),
                 ],
               ),
@@ -84,7 +84,7 @@ class DashboardView extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const <Widget>[
-                  Icon(Icons.person, size: 48),
+                  Icon(Icons.calculate, size: 48),
                   Text('Arithmetic Bloc'),
                 ],
               ),

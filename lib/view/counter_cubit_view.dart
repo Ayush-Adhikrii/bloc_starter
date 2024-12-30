@@ -1,3 +1,4 @@
+import 'package:bloc_test/bloc/counter_bloc.dart';
 import 'package:bloc_test/cubit/counter_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -41,7 +42,7 @@ class CounterCubitView extends StatelessWidget {
         children: <Widget>[
           FloatingActionButton(
             onPressed: () {
-              context.read<CounterCubit>().increment();
+              context.read<CounterBloc>().add(AddEvent());
             },
             tooltip: 'Increment',
             child: const Icon(Icons.add),

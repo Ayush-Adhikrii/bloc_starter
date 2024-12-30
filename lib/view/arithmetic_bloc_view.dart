@@ -1,3 +1,4 @@
+import 'package:bloc_test/bloc/arithmetic_bloc.dart';
 import 'package:bloc_test/cubit/arithmetic_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -71,7 +72,23 @@ class ArithmeticBlocView extends StatelessWidget {
                   second = int.parse(secondController.text);
                   print(first);
                   print(second);
-                  context.read<ArithmeticCubit>().add(first, second);
+
+                  context
+                      .read<ArithmeticBloc>()
+                      .add(MultiplyEvent(first, second));
+                }
+              },
+              child: Text("Multiply"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                if (formKey.currentState!.validate()) {
+                  first = int.parse(firstController.text);
+                  second = int.parse(secondController.text);
+
+                  context
+                      .read<ArithmeticBloc>()
+                      .add(IncrementEvent(first, second));
                 }
               },
               child: Text("Add"),
@@ -81,20 +98,12 @@ class ArithmeticBlocView extends StatelessWidget {
                 if (formKey.currentState!.validate()) {
                   first = int.parse(firstController.text);
                   second = int.parse(secondController.text);
-                  context.read<ArithmeticCubit>().subtract(first, second);
+                  context
+                      .read<ArithmeticBloc>()
+                      .add(DecrementEvent(first, second));
                 }
               },
               child: Text("Subtract"),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                if (formKey.currentState!.validate()) {
-                  first = int.parse(firstController.text);
-                  second = int.parse(secondController.text);
-                  context.read<ArithmeticCubit>().multiply(first, second);
-                }
-              },
-              child: Text("Multiply"),
             ),
           ],
         ),
